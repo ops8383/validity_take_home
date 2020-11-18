@@ -13,7 +13,6 @@ class Duplicate extends Component {
     this._isMounted = true;
     getDuplicateMessage().then(data => {
       if (this._isMounted)
-        console.log(data)
       this.setState({data: data});
     }).catch(() => {
       if (this._isMounted)
@@ -57,7 +56,7 @@ class Duplicate extends Component {
 const RenderRow = (props) => {
   return Object.keys(props.state.data[0]).map((key, index) => {
     return <td key={props.data[key]}>{props.data[key]}</td>
-  })
+  });
 }
 
 

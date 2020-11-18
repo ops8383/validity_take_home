@@ -18,7 +18,7 @@ public class FindDuplicateService {
 
 
 
-
+    //gets the duplicate data 
     public JSONArray getDuplicates() {
         if (duplicates == null || deduplicates == null) {
             FileReader dataFile = null;
@@ -39,7 +39,7 @@ public class FindDuplicateService {
         }
         return duplicates;
     }
-
+    //gets the deduplicated data 
     public JSONArray getDeduplicates() {
         if (duplicates == null || deduplicates == null) {
             FileReader dataFile = null;
@@ -59,6 +59,7 @@ public class FindDuplicateService {
         return deduplicates;
     }
 
+    //separates duplicate data from the data set
     private void removeDuplicates(List<String[]> data) {
         String[] headers = data.get(0);
         JSONArray array = new JSONArray();
@@ -115,6 +116,7 @@ public class FindDuplicateService {
     }
 
 
+    //class to store the record data
     public class Record {
         //fields in the record
         public String id, firstName, lastName, company, email,
@@ -158,6 +160,7 @@ public class FindDuplicateService {
             return costs[b.length()];
         }
 
+        //converts the class object to JSON 
         public JSONObject toJSON(){
             JSONObject jsonObject = new JSONObject();
             try {
@@ -187,6 +190,8 @@ public class FindDuplicateService {
                 return false;
             }
             Record a = (Record) obj;
+            //if email and phone are same, assumes the record is same
+            //or if all other attributes are less than 3 distance away then assumes they are equal.
             boolean x = ( (distance(this.email, a.email) == 0) && (distance(this.phone, a.phone) == 0)) ||
                 ((distance(this.firstName, a.firstName) < 3) && (distance(this.lastName, a.lastName) < 3) && (distance(this.company, a.company) < 3)
                     && (distance(this.address1 + this.address2, a.address1 + a.address2) < 5) && (distance(this.zip, a.zip) < 2)

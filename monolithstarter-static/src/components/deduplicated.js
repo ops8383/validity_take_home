@@ -57,7 +57,7 @@ class Deduplicate extends Component {
 const RenderRow = (props) => {
   return Object.keys(props.state.data[0]).map((key, index) => {
     return <td key={props.data[key]}>{props.data[key]}</td>
-  })
+  });
 }
 
 

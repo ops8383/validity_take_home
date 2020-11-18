@@ -22,13 +22,13 @@ public class HelloController {
     public String getHelloMessage() {
         return helloService.getHelloMessage();
     }
-
+    //adding route for duplicated data
     @CrossOrigin(origins = "*")
     @GetMapping("/duplicates")
     public String getDuplicates() {
         return findDuplicateService.getDuplicates().toString();
     }
-
+    //adding route for deduplicated data
     @CrossOrigin(origins = "*")
     @GetMapping("/deduplicates")
     public String getDeduplicates() {
